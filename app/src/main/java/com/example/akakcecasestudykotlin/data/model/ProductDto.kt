@@ -2,6 +2,8 @@ package com.example.akakcecasestudykotlin.data.model
 
 import com.google.gson.annotations.SerializedName
 
+// Data class for the product, which contains the following fields:
+// We will parse the JSON response to this data class
 data class ProductDto(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String,

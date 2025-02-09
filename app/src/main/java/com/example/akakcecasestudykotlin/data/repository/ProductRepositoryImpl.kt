@@ -10,6 +10,7 @@ class ProductRepositoryImpl @Inject constructor(
     private val productService: ProductService
 ) : ProductRepository {
 
+    // Function to get the products with a limit, returns a list of Product
     override suspend fun getProducts(limit: Int): List<Product> {
         return try {
             val response = productService.getProducts(limit)
@@ -23,6 +24,7 @@ class ProductRepositoryImpl @Inject constructor(
         }
     }
 
+    // Function to get the product by id, returns null if the product is not found
     override suspend fun getProductById(id: Int): Product? {
         val response = productService.getProductById(id)
         return if (response.isSuccessful) {
@@ -32,6 +34,8 @@ class ProductRepositoryImpl @Inject constructor(
         }
     }
 
+    // Extension function to convert ProductDto to Product
+    // This function is used to convert the ProductDto to Product
     private fun ProductDto.toProduct(): Product {
         return Product(
             id = id,

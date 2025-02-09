@@ -16,6 +16,7 @@ class ProductsViewModel @Inject constructor(
     private val productRepository: ProductRepository
 ) : ViewModel() {
 
+    // Add the necessary LiveData objects
     private val _horizontalProducts = MutableLiveData<List<Product>>()
     val horizontalProducts: LiveData<List<Product>> get() = _horizontalProducts
 
@@ -25,6 +26,8 @@ class ProductsViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
+
+    // Fetch the horizontal products, and handle the exceptions
     fun fetchHorizontalProducts() {
         viewModelScope.launch {
             try {
@@ -36,6 +39,7 @@ class ProductsViewModel @Inject constructor(
         }
     }
 
+    // Fetch the vertical products, and handle the exceptions
     fun fetchVerticalProducts() {
         viewModelScope.launch {
             try {
