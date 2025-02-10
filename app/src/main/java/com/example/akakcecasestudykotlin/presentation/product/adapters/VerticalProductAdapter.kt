@@ -17,12 +17,14 @@ class VerticalProductAdapter(
 
     private var onClickListener: ((Product) -> Unit)? = null
 
+    // Create the view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerticalProductViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_vertical_product, parent, false)
         return VerticalProductViewHolder(view)
     }
 
+    // Bind the data with the view holder
     override fun onBindViewHolder(holder: VerticalProductViewHolder, position: Int) {
         val product = products[position]
         holder.bind(product)
@@ -34,14 +36,18 @@ class VerticalProductAdapter(
 
     override fun getItemCount(): Int = products.size
 
+    // Set the click listener for the products
     fun setOnClickListener(onClick: (Product) -> Unit) {
         onClickListener = onClick
     }
+
+    // View holder class for the vertical product
     class VerticalProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val ivProductImage: ImageView = itemView.findViewById(R.id.ivProductImage)
         private val tvProductTitle: TextView = itemView.findViewById(R.id.tvProductTitle)
         private val tvProductPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
 
+        // Sets the product values to the views
         @SuppressLint("SetTextI18n")
         fun bind(product: Product) {
             tvProductTitle.text = product.title
